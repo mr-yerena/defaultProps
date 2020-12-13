@@ -1,0 +1,17 @@
+.tag {
+  font-family: $family-primary;
+  text-transform: uppercase;
+  font-weight: $weight-normal;
+
+  &:not(nody) {
+    font-size: $size-4;
+    border-radius: 0;
+    padding: $size-3 $size-5;
+    background: transparent;
+    color: $brown;
+  }
+
+  border-width: $size-1;
+  border-color: $black-bis;
+  border-style: solid;
+}

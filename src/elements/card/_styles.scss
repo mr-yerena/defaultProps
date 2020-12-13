@@ -1,0 +1,11 @@
+.card {
+  box-shadow: none;
+
+  & .card-content {
+    & .content {
+      font-size: $size-5;
+      font-family: $family-secondary;
+      line-height: $size-7;
+    }
+  }
+}

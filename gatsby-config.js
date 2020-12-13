@@ -1,11 +1,19 @@
+require('dotenv').config({
+  path: `.env`
+})
+
+// Importing sass files with globs
+const globImporter = require(`node-sass-glob-importer`)
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Tech Blog - defaultProps`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `@mr-yerena`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-resolve-src`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,8 +21,33 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        importer: globImporter(),
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      }
+    },
+    {
+      resolve: `gatsby-plugin-eslint`,
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: [`develop`],
+        options: {
+          emitWarning: true,
+          failOnError: false
+        }
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
